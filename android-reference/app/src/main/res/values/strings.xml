@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Prompt Enhancer</string>
+    <string name="title">Flux Prompt Enhancer</string>
+    <string name="subtitle">On-device TFLite inference (decoder_init)</string>
+    <string name="prompt_hint">Input prompt</string>
+    <string name="enhance_button">Enhance Prompt</string>
+    <string name="status_idle">Ready</string>
+    <string name="output_label">Enhanced Prompt</string>
+</resources>

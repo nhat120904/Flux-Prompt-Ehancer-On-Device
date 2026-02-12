@@ -1,0 +1,26 @@
+name: Parity Eval
+
+on:
+  workflow_dispatch:
+
+jobs:
+  parity:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: uv sync
+      - name: Run parity baseline export
+        run: |
+          uv run python tools/parity_eval.py \
+            --prompts eval/prompts.jsonl \
+            --baseline-out eval/baseline_outputs.jsonl
+      - name: Upload results
+        uses: actions/upload-artifact@v4
+        with:
+          name: baseline_outputs
+          path: eval/baseline_outputs.jsonl

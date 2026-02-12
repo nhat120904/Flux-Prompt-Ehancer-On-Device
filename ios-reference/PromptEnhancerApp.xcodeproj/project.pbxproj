@@ -1,0 +1,332 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10000000000000000000031 /* PromptEnhancerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000011 /* PromptEnhancerApp.swift */; };
+		A10000000000000000000032 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000012 /* ContentView.swift */; };
+		A10000000000000000000033 /* AppViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000013 /* AppViewModel.swift */; };
+		A10000000000000000000034 /* PromptEnhancerEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000014 /* PromptEnhancerEngine.swift */; };
+		A10000000000000000000035 /* LocalCoreMLT5Runner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000015 /* LocalCoreMLT5Runner.swift */; };
+		A10000000000000000000036 /* SentencePieceTokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000016 /* SentencePieceTokenizer.swift */; };
+		A10000000000000000000037 /* CoreMLPromptEnhancerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000017 /* CoreMLPromptEnhancerService.swift */; };
+		A10000000000000000000038 /* CoreMLT5Runner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000018 /* CoreMLT5Runner.swift */; };
+		A10000000000000000000039 /* Tokenizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000019 /* Tokenizer.swift */; };
+		A1000000000000000000003A /* EnhanceOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001A /* EnhanceOptions.swift */; };
+		A1000000000000000000003B /* EnhanceResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1000000000000000000001B /* EnhanceResult.swift */; };
+		A1000000000000000000003C /* PromptEnhancerApp/AssetsData in Resources */ = {isa = PBXBuildFile; fileRef = A10000000000000000000005 /* PromptEnhancerApp/AssetsData */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A10000000000000000000005 /* PromptEnhancerApp/AssetsData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = PromptEnhancerApp/AssetsData; sourceTree = "<group>"; };
+		A10000000000000000000006 /* PromptEnhancerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PromptEnhancerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000011 /* PromptEnhancerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEnhancerApp.swift; sourceTree = "<group>"; };
+		A10000000000000000000012 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		A10000000000000000000013 /* AppViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppViewModel.swift; sourceTree = "<group>"; };
+		A10000000000000000000014 /* PromptEnhancerEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptEnhancerEngine.swift; sourceTree = "<group>"; };
+		A10000000000000000000015 /* LocalCoreMLT5Runner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalCoreMLT5Runner.swift; sourceTree = "<group>"; };
+		A10000000000000000000016 /* SentencePieceTokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SentencePieceTokenizer.swift; sourceTree = "<group>"; };
+		A10000000000000000000017 /* CoreMLPromptEnhancerService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLPromptEnhancerService.swift; sourceTree = "<group>"; };
+		A10000000000000000000018 /* CoreMLT5Runner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreMLT5Runner.swift; sourceTree = "<group>"; };
+		A10000000000000000000019 /* Tokenizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tokenizer.swift; sourceTree = "<group>"; };
+		A1000000000000000000001A /* EnhanceOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhanceOptions.swift; sourceTree = "<group>"; };
+		A1000000000000000000001B /* EnhanceResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnhanceResult.swift; sourceTree = "<group>"; };
+		A1000000000000000000001C /* PromptEnhancerApp/Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = PromptEnhancerApp/Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1000000000000000000000F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10000000000000000000002 = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000004 /* PromptEnhancerApp/Sources */,
+				A1000000000000000000001C /* PromptEnhancerApp/Info.plist */,
+				A10000000000000000000005 /* PromptEnhancerApp/AssetsData */,
+				A10000000000000000000003 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A10000000000000000000003 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000006 /* PromptEnhancerApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A10000000000000000000004 /* PromptEnhancerApp/Sources */ = {
+			isa = PBXGroup;
+			children = (
+				A10000000000000000000011 /* PromptEnhancerApp.swift */,
+				A10000000000000000000012 /* ContentView.swift */,
+				A10000000000000000000013 /* AppViewModel.swift */,
+				A10000000000000000000014 /* PromptEnhancerEngine.swift */,
+				A10000000000000000000015 /* LocalCoreMLT5Runner.swift */,
+				A10000000000000000000016 /* SentencePieceTokenizer.swift */,
+				A10000000000000000000017 /* CoreMLPromptEnhancerService.swift */,
+				A10000000000000000000018 /* CoreMLT5Runner.swift */,
+				A10000000000000000000019 /* Tokenizer.swift */,
+				A1000000000000000000001A /* EnhanceOptions.swift */,
+				A1000000000000000000001B /* EnhanceResult.swift */,
+			);
+			path = PromptEnhancerApp/Sources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A10000000000000000000007 /* PromptEnhancerApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A10000000000000000000009 /* Build configuration list for PBXNativeTarget "PromptEnhancerApp" */;
+			buildPhases = (
+				A1000000000000000000000F /* Frameworks */,
+				A1000000000000000000000E /* Sources */,
+				A10000000000000000000010 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PromptEnhancerApp;
+			productName = PromptEnhancerApp;
+			productReference = A10000000000000000000006 /* PromptEnhancerApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A10000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 2620;
+				TargetAttributes = {
+					A10000000000000000000007 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = A10000000000000000000008 /* Build configuration list for PBXProject "PromptEnhancerApp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A10000000000000000000002;
+			productRefGroup = A10000000000000000000003 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A10000000000000000000007 /* PromptEnhancerApp */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000010 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1000000000000000000003C /* PromptEnhancerApp/AssetsData in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1000000000000000000000E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A10000000000000000000031 /* PromptEnhancerApp.swift in Sources */,
+				A10000000000000000000032 /* ContentView.swift in Sources */,
+				A10000000000000000000033 /* AppViewModel.swift in Sources */,
+				A10000000000000000000034 /* PromptEnhancerEngine.swift in Sources */,
+				A10000000000000000000035 /* LocalCoreMLT5Runner.swift in Sources */,
+				A10000000000000000000036 /* SentencePieceTokenizer.swift in Sources */,
+				A10000000000000000000037 /* CoreMLPromptEnhancerService.swift in Sources */,
+				A10000000000000000000038 /* CoreMLT5Runner.swift in Sources */,
+				A10000000000000000000039 /* Tokenizer.swift in Sources */,
+				A1000000000000000000003A /* EnhanceOptions.swift in Sources */,
+				A1000000000000000000003B /* EnhanceResult.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A1000000000000000000000A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = T8887CPCNZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1000000000000000000000B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEAD_CODE_STRIPPING = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = T8887CPCNZ;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+			};
+			name = Release;
+		};
+		A1000000000000000000000C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PromptEnhancerApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhatcuong.promptenhancer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1000000000000000000000D /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = PromptEnhancerApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.nhatcuong.promptenhancer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A10000000000000000000008 /* Build configuration list for PBXProject "PromptEnhancerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000A /* Debug */,
+				A1000000000000000000000B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A10000000000000000000009 /* Build configuration list for PBXNativeTarget "PromptEnhancerApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000C /* Debug */,
+				A1000000000000000000000D /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A10000000000000000000001 /* Project object */;
+}

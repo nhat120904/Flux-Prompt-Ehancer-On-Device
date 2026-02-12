@@ -1,0 +1,10 @@
+{
+  "model_id": "imranali291/flux-prompt-enhancer",
+  "runtime": "LiteRT",
+  "uses_kv_cache": false,
+  "artifacts": [
+    "encoder.tflite",
+    "decoder_init.tflite",
+    "decoder_with_past.tflite"
+  ]
+}

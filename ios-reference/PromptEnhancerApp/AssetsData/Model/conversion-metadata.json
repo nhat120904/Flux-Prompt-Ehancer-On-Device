@@ -1,0 +1,12 @@
+{
+  "model_id": "imranali291/flux-prompt-enhancer",
+  "runtime": "CoreML",
+  "uses_kv_cache": false,
+  "artifacts": [
+    "encoder.mlpackage",
+    "decoder_init.mlpackage",
+    "decoder_with_past.mlpackage"
+  ],
+  "max_input_tokens": 128,
+  "max_decoder_tokens": 64
+}

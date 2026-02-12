@@ -1,0 +1,27 @@
+[project]
+name = "prompt-enhancer-on-device"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "coremltools>=9.0",
+    "huggingface-hub>=0.34.4",
+    "numpy>=2.3.2",
+    "protobuf>=5.29.5",
+    "sentencepiece>=0.2.1",
+    "tensorflow>=2.20.0",
+    "tf-keras>=2.20.1",
+    "tiktoken>=0.12.0",
+    "torch>=2.10.0",
+    "transformers>=4.41,<5",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.1",
+]
+mobile-export = [
+    "coremltools>=8.3.0",
+    "tensorflow>=2.20.0",
+]
