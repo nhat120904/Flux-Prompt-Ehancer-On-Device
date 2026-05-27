@@ -1,6 +1,7 @@
 package com.varmeta.promptenhancer.inference
 
 import android.content.Context
+import android.util.Log
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.Interpreter
 import java.io.Closeable
@@ -14,16 +15,22 @@ import kotlin.math.min
 
 class TfliteT5Runner(
     context: Context,
-    private val modelAssetPath: String = MODEL_ASSET_PATH
+    private val modelAssetPath: String = MODEL_ASSET_PATH,
+    private val delegatePreference: DelegatePreference = DelegatePreference.AUTO
 ) : Closeable {
 
     companion object {
         const val MODEL_ASSET_PATH = "model/decoder_init.tflite"
         const val DEFAULT_MAX_INPUT_TOKENS = 128
         const val DEFAULT_MAX_DECODER_TOKENS = 64
+        private const val TAG = "TfliteT5Runner"
     }
 
     private val interpreter: Interpreter
+    private val activeDelegate: TfliteDelegate
+
+    /** Which hardware backend is actually executing inference. */
+    val delegateName: String get() = activeDelegate.name
 
     private val inputIdsIndex: Int
     private val attentionMaskIndex: Int
@@ -36,12 +43,36 @@ class TfliteT5Runner(
     private var maxDecoderTokens: Int = DEFAULT_MAX_DECODER_TOKENS
 
     init {
+        val modelBuffer = loadModelFile(context, modelAssetPath)
+
+        // DelegateFactory.select() must be called on a background thread.
+        // This is guaranteed by PromptEnhancerEngine calling getOrCreateService()
+        // inside withContext(Dispatchers.Default).
+        val delegate = DelegateFactory.select(context, delegatePreference, modelBuffer)
+        activeDelegate = delegate
+        Log.i(TAG, "[$modelAssetPath] Using delegate: ${delegate.name}")
+
         val options = Interpreter.Options().apply {
-            setNumThreads(max(2, Runtime.getRuntime().availableProcessors() / 2))
-            setUseXNNPACK(true)
+            when (delegate) {
+                is TfliteDelegate.Nnapi -> {
+                    addDelegate(delegate.delegate)
+                    setUseXNNPACK(false)
+                    setNumThreads(1)
+                }
+                is TfliteDelegate.Gpu -> {
+                    addDelegate(delegate.delegate)
+                    setUseXNNPACK(false)
+                    setNumThreads(1)
+                }
+                TfliteDelegate.Cpu -> {
+                    setUseXNNPACK(true)
+                    setNumThreads(max(2, Runtime.getRuntime().availableProcessors() / 2))
+                }
+            }
         }
 
-        interpreter = Interpreter(loadModelFile(context, modelAssetPath), options)
+        modelBuffer.rewind()
+        interpreter = Interpreter(modelBuffer, options)
 
         inputIdsIndex = findInputIndex("input_ids")
         attentionMaskIndex = findInputIndex("attention_mask")
@@ -98,6 +129,7 @@ class TfliteT5Runner(
         val outputBuffer = allocateOutputBuffer(outputTensor)
         val outputs = mutableMapOf<Int, Any>(outputIndex to outputBuffer)
 
+        val t0 = System.nanoTime()
         try {
             interpreter.runForMultipleInputsOutputs(inputBuffers, outputs)
         } catch (t: Throwable) {
@@ -112,6 +144,8 @@ class TfliteT5Runner(
             )
         }
 
+        Log.v(TAG, "[${activeDelegate.name}] inference ${(System.nanoTime() - t0) / 1_000_000}ms seq=${decoderInputIds.size}")
+
         return extractLogits(
             buffer = outputBuffer,
             outputTensor = outputTensor,
@@ -120,7 +154,8 @@ class TfliteT5Runner(
     }
 
     override fun close() {
-        interpreter.close()
+        interpreter.close()    // interpreter must be closed before the delegate it references
+        activeDelegate.close()
     }
 
     private fun findInputIndex(requiredName: String): Int {

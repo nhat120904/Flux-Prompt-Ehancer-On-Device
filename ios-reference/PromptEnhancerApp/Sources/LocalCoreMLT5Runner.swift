@@ -108,10 +108,16 @@ final class LocalCoreMLT5Runner: CoreMLT5Runner, @unchecked Sendable {
         }
 
         let decoderURL = try locateModelPackage(named: "decoder_init")
+        let weightURL = decoderURL.appendingPathComponent("Data/com.apple.CoreML/weights/weight.bin")
+        let weightSize = (try? FileManager.default.attributesOfItem(atPath: weightURL.path)[.size] as? Int) ?? -1
+        print("[PromptEnhancer] decoder_init.mlpackage at: \(decoderURL.path)")
+        print("[PromptEnhancer] weight.bin size: \(weightSize) bytes (expect ~116 MB)")
+
         let compiledURL = try MLModel.compileModel(at: decoderURL)
+        print("[PromptEnhancer] compiled model at: \(compiledURL.path)")
 
         let configuration = MLModelConfiguration()
-        configuration.computeUnits = .all
+        configuration.computeUnits = .cpuAndGPU
 
         let model = try MLModel(contentsOf: compiledURL, configuration: configuration)
         guard let firstOutput = model.modelDescription.outputDescriptionsByName.keys.first else {

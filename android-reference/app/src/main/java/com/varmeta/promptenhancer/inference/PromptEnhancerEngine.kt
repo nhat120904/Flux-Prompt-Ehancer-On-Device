@@ -8,7 +8,10 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.io.Closeable
 
-class PromptEnhancerEngine(private val context: Context) : Closeable {
+class PromptEnhancerEngine(
+    private val context: Context,
+    private val delegatePreference: DelegatePreference = DelegatePreference.AUTO
+) : Closeable {
     private val lock = Any()
 
     @Volatile
@@ -40,7 +43,7 @@ class PromptEnhancerEngine(private val context: Context) : Closeable {
             val tokenizer = context.assets.open("tokenizer/tokenizer_vocab.json").use {
                 SentencePieceTokenizer(it)
             }
-            val newRunner = TfliteT5Runner(context)
+            val newRunner = TfliteT5Runner(context, delegatePreference = delegatePreference)
             val newService = PromptEnhancerService(tokenizer, newRunner)
 
             runner = newRunner

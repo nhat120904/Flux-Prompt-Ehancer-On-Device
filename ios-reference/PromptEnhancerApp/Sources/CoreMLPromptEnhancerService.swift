@@ -119,6 +119,8 @@ actor CoreMLPromptEnhancerService {
             seenTokens.append(next)
         }
 
+        let preview = output.prefix(20).map(String.init).joined(separator: ",")
+        print("[PromptEnhancer] generated \(output.count) tokens, first 20: [\(preview)] (pad=\(tokenizer.padTokenId) eos=\(tokenizer.eosTokenId))")
         return output
     }
 
