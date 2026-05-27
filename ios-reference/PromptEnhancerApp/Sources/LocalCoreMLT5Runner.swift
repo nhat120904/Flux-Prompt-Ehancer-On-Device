@@ -94,6 +94,15 @@ final class LocalCoreMLT5Runner: CoreMLT5Runner, @unchecked Sendable {
                         from: logitsValue,
                         decoderTokenCount: decoderInputIds.count
                     )
+                    if decoderInputIds.count <= 1 {
+                        let nanCount = logits.filter { $0.isNaN }.count
+                        let finite = logits.filter { $0.isFinite }
+                        let mn = finite.min() ?? .nan
+                        let mx = finite.max() ?? .nan
+                        let dtype = logitsValue.dataType.rawValue
+                        let shape = logitsValue.shape.map { $0.intValue }
+                        print("[PromptEnhancer] logits stats: count=\(logits.count) nan=\(nanCount) min=\(mn) max=\(mx) dtype=\(dtype) shape=\(shape)")
+                    }
                     continuation.resume(returning: logits)
                 } catch {
                     continuation.resume(throwing: error)
