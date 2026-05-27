@@ -117,7 +117,7 @@ final class LocalCoreMLT5Runner: CoreMLT5Runner, @unchecked Sendable {
         print("[PromptEnhancer] compiled model at: \(compiledURL.path)")
 
         let configuration = MLModelConfiguration()
-        configuration.computeUnits = .cpuAndGPU
+        configuration.computeUnits = .cpuOnly
 
         let model = try MLModel(contentsOf: compiledURL, configuration: configuration)
         guard let firstOutput = model.modelDescription.outputDescriptionsByName.keys.first else {
