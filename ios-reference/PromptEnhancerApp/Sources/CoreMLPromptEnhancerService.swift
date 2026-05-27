@@ -23,7 +23,7 @@ actor CoreMLPromptEnhancerService {
         var finishReason = "max_tokens"
 
         for attempt in 0..<options.retries {
-            if Int(Date().timeIntervalSince(start) * 1000) > options.timeoutMs {
+            if attempt > 0, Int(Date().timeIntervalSince(start) * 1000) > options.timeoutMs {
                 finishReason = "timeout"
                 break
             }
@@ -85,7 +85,7 @@ actor CoreMLPromptEnhancerService {
         let cappedMinNewTokens = min(options.minNewTokens, cappedMaxNewTokens)
 
         for step in 0..<cappedMaxNewTokens {
-            if Int(Date().timeIntervalSince(start) * 1000) > options.timeoutMs {
+            if step > 0, Int(Date().timeIntervalSince(start) * 1000) > options.timeoutMs {
                 break
             }
             try Task.checkCancellation()

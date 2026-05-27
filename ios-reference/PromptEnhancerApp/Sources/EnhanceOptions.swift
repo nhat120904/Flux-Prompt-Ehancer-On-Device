@@ -20,7 +20,7 @@ struct EnhanceOptions: Sendable {
         maxNewTokens: Int = 63,
         retries: Int = 3,
         seed: UInt64? = nil,
-        timeoutMs: Int = 8000
+        timeoutMs: Int = 60000
     ) {
         self.topP = topP
         self.temperature = temperature
