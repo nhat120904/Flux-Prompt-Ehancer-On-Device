@@ -6,13 +6,13 @@ from typing import Optional
 import torch
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
-from transformers import AutoModelForCausalLM, AutoTokenizer
+from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s [%(levelname)s] %(message)s")
 logger = logging.getLogger("prompt-enhancer")
 
 MODEL_ID = os.getenv("MODEL_ID", "imranali291/flux-prompt-enhancer")
-HF_TOKEN = os.getenv("HF_TOKEN")
+HF_TOKEN = os.getenv("HF_TOKEN") or None
 DEVICE = os.getenv("DEVICE") or ("cuda" if torch.cuda.is_available() else "cpu")
 DTYPE = torch.float16 if DEVICE == "cuda" else torch.float32
 
@@ -22,8 +22,14 @@ state: dict = {}
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Loading model %s on %s (%s)", MODEL_ID, DEVICE, DTYPE)
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, token=HF_TOKEN)
-    model = AutoModelForCausalLM.from_pretrained(
+    tokenizer = AutoTokenizer.from_pretrained(MODEL_ID, token=HF_TOKEN, use_fast=False)
+
+    config = AutoConfig.from_pretrained(MODEL_ID, token=HF_TOKEN)
+    is_seq2seq = bool(getattr(config, "is_encoder_decoder", False))
+    model_cls = AutoModelForSeq2SeqLM if is_seq2seq else AutoModelForCausalLM
+    logger.info("Detected %s model", "seq2seq" if is_seq2seq else "causal-LM")
+
+    model = model_cls.from_pretrained(
         MODEL_ID,
         token=HF_TOKEN,
         torch_dtype=DTYPE,
@@ -33,6 +39,7 @@ async def lifespan(app: FastAPI):
         tokenizer.pad_token_id = tokenizer.eos_token_id
     state["tokenizer"] = tokenizer
     state["model"] = model
+    state["is_seq2seq"] = is_seq2seq
     logger.info("Model loaded.")
     yield
     state.clear()
@@ -87,7 +94,10 @@ def enhance(req: EnhanceRequest):
         pad_token_id=tokenizer.pad_token_id,
         eos_token_id=tokenizer.eos_token_id,
     )
-    generated = output[0][inputs["input_ids"].shape[1]:]
+    if state.get("is_seq2seq"):
+        generated = output[0]
+    else:
+        generated = output[0][inputs["input_ids"].shape[1]:]
     text = tokenizer.decode(generated, skip_special_tokens=True).strip()
     return EnhanceResponse(prompt=req.prompt, enhanced=text)
 
