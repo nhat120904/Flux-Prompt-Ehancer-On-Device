@@ -1,0 +1,25 @@
+services:
+  prompt-enhancer:
+    build: .
+    image: flux-prompt-enhancer:latest
+    container_name: flux-prompt-enhancer
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      MODEL_ID: ${MODEL_ID:-imranali291/flux-prompt-enhancer}
+      HF_TOKEN: ${HF_TOKEN:-}
+      DEVICE: ${DEVICE:-}
+    volumes:
+      - hf-cache:/app/.cache/huggingface
+    # Uncomment to enable GPU (requires nvidia-container-toolkit)
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+volumes:
+  hf-cache:
