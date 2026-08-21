@@ -4,6 +4,10 @@ from contextlib import asynccontextmanager
 from typing import Optional
 
 import torch
+try:
+    torch.backends.python_native.disable_dispatch_keys("CUDA")
+except AttributeError:
+    pass
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 from transformers import AutoConfig, AutoModelForCausalLM, AutoModelForSeq2SeqLM, AutoTokenizer
@@ -15,6 +19,7 @@ MODEL_ID = os.getenv("MODEL_ID", "imranali291/flux-prompt-enhancer")
 HF_TOKEN = os.getenv("HF_TOKEN") or None
 DEVICE = os.getenv("DEVICE") or ("cuda" if torch.cuda.is_available() else "cpu")
 DTYPE = torch.float16 if DEVICE == "cuda" else torch.float32
+ROOT_PATH = os.getenv("ROOT_PATH", "")
 
 state: dict = {}
 
@@ -33,6 +38,7 @@ async def lifespan(app: FastAPI):
         MODEL_ID,
         token=HF_TOKEN,
         torch_dtype=DTYPE,
+        attn_implementation="eager",
     ).to(DEVICE)
     model.eval()
     if tokenizer.pad_token_id is None:
@@ -45,7 +51,7 @@ async def lifespan(app: FastAPI):
     state.clear()
 
 
-app = FastAPI(title="Flux Prompt Enhancer", lifespan=lifespan)
+app = FastAPI(title="Flux Prompt Enhancer", lifespan=lifespan, root_path=ROOT_PATH)
 
 
 class EnhanceRequest(BaseModel):
