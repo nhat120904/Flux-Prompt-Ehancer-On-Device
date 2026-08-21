@@ -11,3 +11,4 @@ wheels/
 
 *.tflite
 *.bin
+fastapi-service/.env
