@@ -11,6 +11,9 @@ services:
       HF_TOKEN: ${HF_TOKEN:-}
       DEVICE: ${DEVICE:-}
       ROOT_PATH: ${ROOT_PATH:-}
+      TRANSLATION_API_URL: ${TRANSLATION_API_URL:-https://ai-app-studio.var-meta.com/ai-summary/api/translate}
+      TRANSLATION_API_KEY: ${TRANSLATION_API_KEY:-}
+      TRANSLATION_TIMEOUT_SECONDS: ${TRANSLATION_TIMEOUT_SECONDS:-30}
     volumes:
       - hf-cache:/app/.cache/huggingface
     # Uncomment to enable GPU (requires nvidia-container-toolkit)
